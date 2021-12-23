@@ -1,0 +1,15 @@
+# User interface text and labels
+
+# English (default)
+# -----------------
+en: &DEFAULT_EN
+  recent_posts               : "recent posts"
+
+en-US:
+  <<: *DEFAULT_EN
+en-CA:
+  <<: *DEFAULT_EN
+en-GB:
+  <<: *DEFAULT_EN
+en-AU:
+  <<: *DEFAULT_EN

@@ -1,0 +1,17 @@
+---
+title: "Football and Games"
+date: 2006-09-17T21:39:00-04:00
+type: post
+permalink: /blog/2006/09/17/football-and-games/
+---
+Caleb's team is still undefeated after 4 games. With the exception of their first game, they have manhandled every other team they've come up against. With 3 games left, the chances are looking good for another undefeated regular season. Two other teams are still undefeated in the 6th grade league but are not on the Panthers' schedule and may only meet in the playoffs.
+
+On the other hand (literally!), Logan's football season has ended early. Last Friday, he fell off the monkey bars during recess and fractured his left wrist. He's now in a bright green cast for the next 6 weeks. Tristan is the only one who has not broken anything this summer (Caleb fractured a finger a couple of weeks before football camp).
+
+I played a couple of my unplayed games this weekend. On Saturday, Jeff and I sat down to play [Bonaparte at Marengo](https://www.boardgamegeek.com/game/15839). I've been through the rules several times but there was still some uncertainty in how to handle some situations that arose during the game. We worked through it though and had a good time. Jeff was the French and I the Austrians. Jeff picked up quickly on idea that the French should conduct a deliberate withdrawal and leave only enough forces behind to slow down the Austrians. His strategy nearly worked but I was able to engage and defeat enough of his forces to cause his army to become demoralized on the last turn of the game. We enjoyed the game. Now that we have the basics down though, we need to peruse the forums to get a better understanding of the rules and mechanics.
+
+Sunday afternoon/evening is family game night at our house. The kids have to be completely done with chores, homework, etc by 4pm. We play a couple of games, order pizza and generally have a good time. Tonight we tried out [Ticket to Ride -- Marklin](https://www.boardgamegeek.com/game/21348) with the boys. They said they liked it better than the original TtR. Logan was the big winner. He was a little apprehensive at first but we marked the cities on the board he need to connect with pairs of like colored dice.
+
+Afterwards, Caleb, Tristan and I played (half) a game of [Mexica](https://www.boardgamegeek.com/game/2955). It's an older action point based game by Kramer and Kiesling (same duo that designed Tikal). You move your token around the board and subdivide the island with water tiles to create canals. Areas completely enclosed by water can be "founded" as a district if the appropriate district tile is available (a district can only be founded if the size [in land squares] matches the size stated on one of the district tiles). Players score points when districts are founded and during the scoring turns for having the most valuable buidings in the districts. Somewhat dry, but an enjoyable mid-weight euro. It plays quickly. We got through rules and the first scoring round in about 30 minutes. Shouldn't take more than 45 -- 60 minutes for 3 or 4 players that have played a couple of times.
+
+I'm currently sitting at 22 unplayed games that I own. 16 are standalone games and 6 are expansions for other games I have. I will be able to get through some more of these in the coming weeks but the list is going to also grow. A few items that I've preordered from GMT and Columbia are still expected this year and I'm sure to pick up a few things at Essen! Still, I've played through 50 titles that otherwise would be sitting on the shelf.
