@@ -8,22 +8,18 @@ We added a puppy to our household about 3 weeks ago...as if there wasn't enough 
 
 Here are a few picks...
 
-<div style="text-align: center;">
-  One week
-</div>
+## One week
 
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="https://farm2.static.flickr.com/1271/822759648_ce7c90f037_m.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 200px;" src="https://farm2.static.flickr.com/1271/822759648_ce7c90f037_m.jpg" alt="" border="0" /></a>
+![no-alignment]({{ site.url }}{{ site.baseurl }}/assets/2007-07-15-our-new-puppy/2007_05_08_Darwin.jpg)
 
-<div style="text-align: center;">
-  One month
-</div>
+## One month
 
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="https://farm2.static.flickr.com/1074/822759644_36f9041e9a_m.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 200px;" src="https://farm2.static.flickr.com/1074/822759644_36f9041e9a_m.jpg" alt="" border="0" /></a>
+![no-alignment]({{ site.url }}{{ site.baseurl }}/assets/2007-07-15-our-new-puppy/2007_06_04_Darwin.jpg)
 
-<div style="text-align: center;">
-  Two months<br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="https://farm2.static.flickr.com/1255/822759496_7f4263c811_m.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 200px;" src="https://farm2.static.flickr.com/1255/822759496_7f4263c811_m.jpg" alt="" border="0" /></a>Favorite sleeping spot</p> 
-  
-  <div style="text-align: left;">
-    <a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="https://farm2.static.flickr.com/1183/822759626_5146471dca_m.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 200px;" src="https://farm2.static.flickr.com/1183/822759626_5146471dca_m.jpg" alt="" border="0" /></a>His name is Darwin. He's a Cockapoo (Cocker Spaniel -- Poodle hybrid).
-  </div>
-</div>
+## Two months
+
+![no-alignment]({{ site.url }}{{ site.baseurl }}/assets/2007-07-15-our-new-puppy/2007_07_06_01_Darwin_under_bakers_rack.jpg)
+
+![no-alignment]({{ site.url }}{{ site.baseurl }}/assets/2007-07-15-our-new-puppy/IMG_1239.JPG)
+
+His name is Darwin. He's a Cockapoo (Cocker Spaniel -- Poodle hybrid).
