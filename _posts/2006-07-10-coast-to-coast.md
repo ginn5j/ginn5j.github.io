@@ -4,9 +4,9 @@ date: 2006-07-10T18:05:00-04:00
 type: post
 permalink: /blog/2006/07/10/coast-to-coast/
 ---
-Back in April, we visited [Chris Brooks](https://www.chrisbrooks.org/)' family and [explored Portland and the Oregon coast](https://ginn5j.blogspot.com/2006/04/spring-break-in-portland-oregon.html). Last week, we drove over to the other coast and spent the week on the Outer Banks in North Carolina with our friends, Bob & Julie and their kids.
+Back in April, we visited [Chris Brooks](https://www.chrisbrooks.org/)' family and [explored Portland and the Oregon coast]({% post_url 2006-04-08-spring-break-in-portland-oregon %}). Last week, we drove over to the other coast and spent the week on the Outer Banks in North Carolina with our friends, Bob & Julie and their kids.
 
-Most of the week was spent relaxing, playing games and catching up on a bit of reading. We did take in a few of the sights in the area. At the northern end, near Corolla, Mustangs (wild horses of Spanish descent) roam free. We spent a couple of hours in 4&#215;4's traveling the beach and unpaved trails learning about the origin and history of the area while searching for groups of the beasts. We did see quite a few. Logan counted 40+. Very impressive sight, especially the adult/child pair at the water's edge when we were returning from the trip.
+Most of the week was spent relaxing, playing games and catching up on a bit of reading. We did take in a few of the sights in the area. At the northern end, near Corolla, Mustangs (wild horses of Spanish descent) roam free. We spent a couple of hours in 4x4's traveling the beach and unpaved trails learning about the origin and history of the area while searching for groups of the beasts. We did see quite a few. Logan counted 40+. Very impressive sight, especially the adult/child pair at the water's edge when we were returning from the trip.
 
 We also spent a day on Roanoke, the location of the first English colony in America. There is a living museum (not unlike Conner Prairie in Indiana) called the Festival Park. Sights included a seaworthy replica of the Elizabeth, one of the ships that delivered the first load of colonists from England, and a working blacksmith.
 

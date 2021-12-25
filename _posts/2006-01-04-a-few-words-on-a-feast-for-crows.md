@@ -6,7 +6,9 @@ permalink: /blog/2006/01/04/a-few-words-on-a-feast-for-crows/
 ---
 My main read over the holiday break was "A Feast for Crows" by George R. R. Martin.
 
-Do you like to read fantasy? Have you read [George R. R. Martin](https://www.georgerrmartin.com/)'s previous books in his series known as A Song of Ice and Fire? If you h<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="https://www.georgerrmartin.com/gallery/art/crows01.jpg"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 200px;" src="https://www.georgerrmartin.com/gallery/art/crows01.jpg" alt="" border="0" /></a>aven't, do yourself a favor, stop reading this, find a copy of "A Game of Thrones" and read it from cover to cover. Do the same with "A Clash of Kings" and then "A Storm of Swords."
+![no-alignment](https://www.georgerrmartin.com/gallery/art/crows01.jpg)
+
+Do you like to read fantasy? Have you read [George R. R. Martin](https://www.georgerrmartin.com/)'s previous books in his series known as A Song of Ice and Fire? If you haven't, do yourself a favor, stop reading this, find a copy of "A Game of Thrones" and read it from cover to cover. Do the same with "A Clash of Kings" and then "A Storm of Swords."
 
 This series is simply the best fantasy to be published in a long time. I am not a Jordan fan. I read the first book in the Wheel of Time series. It was good but I was concerned about how long it was going to be (he claimed he would need 10 books very early in the series) and decided to wait until more had been published. I was glad I did since many fans I've talked to readily admit there is little plot progression in the later books. And it's more than 10 volumes now. I had high hopes after reading "Wizard's First Rule" by Terry Goodkind. Great book but the subsequent novels were a rehash of the same story. I stopped after the third novel.
 

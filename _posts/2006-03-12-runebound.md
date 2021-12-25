@@ -4,7 +4,9 @@ date: 2006-03-12T18:20:00-04:00
 type: post
 permalink: /blog/2006/03/12/runebound/
 ---
-<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="https://static.flickr.com/48/111567550_d935a36711_o.jpg"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px;" src="https://static.flickr.com/48/111567550_d935a36711_o.jpg" alt="" border="0" /></a>I think I finally found a game that the boys really like --- [Runebound, 2nd Edition](https://www.boardgamegeek.com/game/21523) --- by Martin Wallace. I picked up a copy at my FLGS on Saturday while the boys were sparring at TKD.
+![no-alignment]({{ site.url }}{{ site.baseurl }}/assets/2006-03-12-runebound/IMG_0416.JPG)
+
+I think I finally found a game that the boys really like --- [Runebound, 2nd Edition](https://www.boardgamegeek.com/game/21523) --- by Martin Wallace. I picked up a copy at my FLGS on Saturday while the boys were sparring at TKD.
 
 Played a couple of partial games yesterday and a full game today. The mechanics are incredibly simple --- move, adventure (if you're on an adventure counter) or go to market (if you're in a town), and level up (if you have enough experience). You spend most of the game wandering through the wilderness building up your character so that you are strong enough to seek out and defeat the dragon lords. The first player to defeat 3 dragon lords or the big baddie, Lord Margath, is the winner. The only real knock is the time it takes to finish. Even playing the "shorter" variation (3 experience/level for 4 players), our game clocked in at over 4 hours today. Still, it fills the roleplaying niche that the boys so enjoy.
 

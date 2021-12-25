@@ -1,5 +1,5 @@
 ---
-title: "&quot;Myth&quot;-ing VCRs =&gt; Tivo for a Geek"
+title: "'Myth'-ing VCRs => Tivo for a Geek"
 date: 2006-05-15T20:56:00-04:00
 type: post
 permalink: /blog/2006/05/15/myth-ing-vcrs-tivo-for-a-geek/
@@ -22,29 +22,13 @@ Stability of the device has been reasonable. The system has locked occasionally.
 
 For inquiring minds....components used:
 
-<ul style="font-weight: bold;">
-  <li>
-    <span style="font-style: italic;">Case </span>-- Antec Sonata II
-  </li>
-  <li>
-    <span style="font-style: italic;">Mobo </span>-- MSI K8N Neo4 Platinum
-  </li>
-  <li>
-    <span style="font-style: italic;">CPU </span>-- AMD Athlon 64 3200
-  </li>
-  <li>
-    <span style="font-style: italic;">Memory </span>-- Crucial 1GB DDR400
-  </li>
-  <li>
-    <span style="font-style: italic;">HD </span>-- Seagate 300GB UATA
-  </li>
-  <li>
-    <span style="font-style: italic;">DVD-RW</span> -- Plextor PX-716A
-  </li>
-  <li>
-    <span style="font-style: italic;">Tuner </span>-- Hauppauge WinTV-PVR 350
-  </li>
-</ul>
+  * Case -- Antec Sonata II
+  * Mobo -- MSI K8N Neo4 Platinum
+  * CPU -- AMD Athlon 64 3200
+  * Memory -- Crucial 1GB DDR400
+  * HD -- Seagate 300GB UATA
+  * DVD-RW -- Plextor PX-716A
+  * Tuner -- Hauppauge WinTV-PVR 350
 
 I started this post a couple of weeks ago and then life intervened. Last Thursday, the hard drive died after 2 weeks of operation. Hmmm...smells like a defective drive. Sent it back over the weekend and a replacement is on the way. In the meantime, I put in another drive I had at the house. Also, the need for an extra tuner has already occurred and I dropped in a PVR 150 on Sunday.
 
