@@ -37,6 +37,6 @@ A short story about Roland sometime before the beginning of **The Gunslinger**. 
 
 ## Thoughts on 2015
 
-Without a doubt, more King. I've already finished the second book of **The Dark Tower** and am more than half done with the third. Based on my [Dark Tower plan]({% post_url 2014-11-08-on-the-road-to-the-dark-tower %}), I will meander through a considerable amount of related material before I am finished and not all of that will be this year. I may knock out the remaining two volumes of the **Icewind Dale** trilogy and will probably read **The Slow Regard for Silent Things** while I await the third entry in the **Kingkiller Chronicles** by Patrick Rothfuss.
+Without a doubt, more King. I've already finished the second book of **The Dark Tower** and am more than half done with the third. Based on my [Dark Tower plan]({% post_url /2014/11/2014-11-08-on-the-road-to-the-dark-tower %}), I will meander through a considerable amount of related material before I am finished and not all of that will be this year. I may knock out the remaining two volumes of the **Icewind Dale** trilogy and will probably read **The Slow Regard for Silent Things** while I await the third entry in the **Kingkiller Chronicles** by Patrick Rothfuss.
 
 That's all I have for 2014! Drop me a line with your recommendations. I'm always looking for great new reads in science fiction and fantasy!
