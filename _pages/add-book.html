@@ -1,0 +1,531 @@
+---
+layout: none
+permalink: /add-book/
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Add Book</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f5;
+      --card: #fff;
+      --border: #ddd;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --text: #1a1a1a;
+      --muted: #666;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      padding: 16px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 1.4rem; font-weight: 700; }
+
+    .settings-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    /* Settings popover */
+    .popover-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 60px 16px 0;
+    }
+    .popover-overlay.open { display: flex; }
+    .popover {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      width: min(320px, 100%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .popover h2 { font-size: 1rem; margin-bottom: 12px; }
+    .popover label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; }
+    .popover input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      font-family: monospace;
+      margin-bottom: 10px;
+    }
+    .popover .hint { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; }
+    .popover-actions { display: flex; gap: 8px; }
+
+    /* Form card */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .field input[type="text"],
+    .field input[type="date"],
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.15s;
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field textarea { min-height: 80px; resize: vertical; }
+
+    /* Rating */
+    .rating-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .rating-group input[type="radio"] { display: none; }
+    .rating-group label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      flex: 1;
+      min-width: 52px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 400;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .rating-group label .stars { font-size: 1.1rem; }
+    .rating-group input[type="radio"]:checked + label {
+      border-color: var(--accent);
+      background: #eff6ff;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Series number (conditional) */
+    #series-num-row { display: none; }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.15s;
+    }
+    .submit-btn:active { background: var(--accent-dark); }
+    .submit-btn:disabled { background: #93c5fd; cursor: default; }
+
+    /* Generic buttons */
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity 0.15s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: none; border-color: var(--border); color: var(--text); }
+
+    /* Status banner */
+    #status {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    #status.success { display: block; background: #dcfce7; color: var(--success); }
+    #status.error   { display: block; background: #fee2e2; color: var(--danger); }
+
+    /* Preview */
+    #preview-block {
+      display: none;
+      margin-top: 14px;
+    }
+    #preview-block summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    #preview-content {
+      background: #f8f8f8;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Add Book</h1>
+  <button class="settings-btn" id="settings-open" aria-label="Settings">&#x2699;&#xFE0F;</button>
+</header>
+
+<!-- Settings popover -->
+<div class="popover-overlay" id="popover-overlay">
+  <div class="popover">
+    <h2>Settings</h2>
+    <label for="pat-input">GitHub Personal Access Token</label>
+    <input type="password" id="pat-input" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+    <p class="hint">
+      Fine-grained: <em>Contents → Read &amp; write</em><br>
+      Classic: <em>repo</em> scope<br>
+      Stored in browser localStorage on this device.
+    </p>
+    <div class="popover-actions">
+      <button class="btn btn-primary" id="pat-save">Save</button>
+      <button class="btn btn-secondary" id="pat-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main form -->
+<div class="card">
+  <form id="book-form" novalidate>
+
+    <div class="field">
+      <label for="title">Title *</label>
+      <input type="text" id="title" required autocorrect="off" autocapitalize="words">
+    </div>
+
+    <div class="field">
+      <label for="author">Author *</label>
+      <input type="text" id="author" required autocorrect="off" autocapitalize="words">
+    </div>
+
+    <div class="field">
+      <label for="series">Series</label>
+      <input type="text" id="series" placeholder="e.g. The Expanse" autocorrect="off" autocapitalize="words">
+    </div>
+
+    <div class="field" id="series-num-row">
+      <label for="series-num">Series #</label>
+      <input type="text" id="series-num" placeholder="e.g. 3" inputmode="decimal">
+    </div>
+
+    <div class="field">
+      <label>Rating *</label>
+      <div class="rating-group">
+        <input type="radio" name="rating" id="r1" value="1">
+        <label for="r1"><span class="stars">&#x2605;</span>Avoid</label>
+
+        <input type="radio" name="rating" id="r2" value="2">
+        <label for="r2"><span class="stars">&#x2605;&#x2605;</span>Meh</label>
+
+        <input type="radio" name="rating" id="r3" value="3">
+        <label for="r3"><span class="stars">&#x2605;&#x2605;&#x2605;</span>OK</label>
+
+        <input type="radio" name="rating" id="r4" value="4">
+        <label for="r4"><span class="stars">&#x2605;&#x2605;&#x2605;&#x2605;</span>Good</label>
+
+        <input type="radio" name="rating" id="r5" value="5">
+        <label for="r5"><span class="stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>Great</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="date-finished">Date Finished *</label>
+      <input type="date" id="date-finished" required>
+    </div>
+
+    <div class="field">
+      <label for="genres">Genres <span style="font-weight:400;color:var(--muted)">(comma-separated)</span></label>
+      <input type="text" id="genres" placeholder="e.g. mystery, thriller" autocorrect="off" autocapitalize="none">
+    </div>
+
+    <div class="field">
+      <label for="notes">Notes <span style="font-weight:400;color:var(--muted)">(Markdown)</span></label>
+      <textarea id="notes" placeholder="Optional notes about the book…" autocorrect="on"></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submit-btn">Add Book</button>
+  </form>
+
+  <div id="status"></div>
+
+  <details id="preview-block">
+    <summary>Preview generated file</summary>
+    <pre id="preview-content"></pre>
+  </details>
+</div>
+
+<script>
+  // ── Helpers ────────────────────────────────────────────────────────────────
+
+  function slugify(title) {
+    return title.toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/['\u2018\u2019]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function parseSeries(raw) {
+    if (!raw) return { name: null, num: null };
+    if (raw.includes('; ')) return { name: raw, num: null };
+    const m = raw.match(/^(.*?),?\s+#([\d.]+)$/);
+    if (m) return { name: m[1].replace(/,$/, '').trim(), num: m[2] };
+    return { name: raw, num: null };
+  }
+
+  function toBase64Unicode(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function pad2(n) { return String(n).padStart(2, '0'); }
+
+  function todayISO() {
+    const d = new Date();
+    return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+  }
+
+  // ── PAT storage ────────────────────────────────────────────────────────────
+
+  const patInput = document.getElementById('pat-input');
+  const overlay  = document.getElementById('popover-overlay');
+
+  function loadPAT() {
+    patInput.value = localStorage.getItem('gh_pat') || '';
+  }
+
+  document.getElementById('settings-open').addEventListener('click', () => {
+    loadPAT();
+    overlay.classList.add('open');
+  });
+  document.getElementById('pat-cancel').addEventListener('click', () => {
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  document.getElementById('pat-save').addEventListener('click', () => {
+    localStorage.setItem('gh_pat', patInput.value.trim());
+    overlay.classList.remove('open');
+  });
+
+  // ── Series # visibility ────────────────────────────────────────────────────
+
+  const seriesInput    = document.getElementById('series');
+  const seriesNumRow   = document.getElementById('series-num-row');
+  const seriesNumInput = document.getElementById('series-num');
+
+  seriesInput.addEventListener('input', () => {
+    const hasSeries = seriesInput.value.trim().length > 0;
+    seriesNumRow.style.display = hasSeries ? 'block' : 'none';
+    if (!hasSeries) seriesNumInput.value = '';
+  });
+
+  // ── Default date ───────────────────────────────────────────────────────────
+
+  document.getElementById('date-finished').value = todayISO();
+
+  // ── Build file content ─────────────────────────────────────────────────────
+
+  function buildContent(fields) {
+    const { title, author, seriesName, seriesNum, rating, dateFinished, genres, notes } = fields;
+
+    let fm = '---\n';
+    fm += `title: "${title.replace(/"/g, '\\"')}"\n`;
+    fm += `author: "${author.replace(/"/g, '\\"')}"\n`;
+    if (seriesName) {
+      fm += `series: "${seriesName.replace(/"/g, '\\"')}"\n`;
+      if (seriesNum) fm += `series_number: ${seriesNum}\n`;
+    }
+    fm += `rating: ${rating}\n`;
+    fm += `date_finished: ${dateFinished}\n`;
+    if (genres.length > 0) {
+      fm += 'genres:\n';
+      genres.forEach(g => { fm += `  - ${g}\n`; });
+    }
+    fm += '---\n';
+
+    if (notes.trim()) fm += notes.trim() + '\n';
+
+    return fm;
+  }
+
+  // ── Submit ─────────────────────────────────────────────────────────────────
+
+  const form      = document.getElementById('book-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const statusEl  = document.getElementById('status');
+  const previewBlock   = document.getElementById('preview-block');
+  const previewContent = document.getElementById('preview-content');
+
+  function showStatus(type, msg) {
+    statusEl.className = type;
+    statusEl.textContent = msg;
+  }
+
+  async function submitBook(fields, slug, attempt) {
+    const pat = localStorage.getItem('gh_pat') || '';
+    if (!pat) {
+      showStatus('error', 'No GitHub PAT saved. Tap ⚙ to add one.');
+      return;
+    }
+
+    const { dateFinished } = fields;
+    const [yyyy, mm] = dateFinished.split('-');
+    const finalSlug = attempt === 2 ? slug + '-2' : slug;
+    const path = `_books/${yyyy}/${mm}/${dateFinished}-${finalSlug}.md`;
+    const content = buildContent(fields);
+
+    previewContent.textContent = content;
+    previewBlock.style.display = 'block';
+    previewBlock.open = false;
+
+    const body = {
+      message: `Add book: ${fields.title}`,
+      content: toBase64Unicode(content),
+      branch: 'main'
+    };
+
+    const res = await fetch(
+      `https://api.github.com/repos/ginn5j/ginn5j.github.io/contents/${encodeURIComponent(path).replace(/%2F/g, '/')}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${pat}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        body: JSON.stringify(body)
+      }
+    );
+
+    if (res.status === 201) {
+      showStatus('success', `✓ Added! File: ${path}`);
+      form.reset();
+      document.getElementById('date-finished').value = todayISO();
+      seriesNumRow.style.display = 'none';
+    } else if (res.status === 422 && attempt === 1) {
+      // File already exists — retry with -2 suffix
+      await submitBook(fields, slug, 2);
+    } else {
+      const data = await res.json().catch(() => ({}));
+      showStatus('error', `Error ${res.status}: ${data.message || 'Unknown error'}`);
+    }
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const title        = document.getElementById('title').value.trim();
+    const author       = document.getElementById('author').value.trim();
+    const seriesRaw    = document.getElementById('series').value.trim();
+    const seriesNumRaw = document.getElementById('series-num').value.trim();
+    const ratingEl     = document.querySelector('input[name="rating"]:checked');
+    const dateFinished = document.getElementById('date-finished').value;
+    const genresRaw    = document.getElementById('genres').value.trim();
+    const notes        = document.getElementById('notes').value;
+
+    // Validation
+    if (!title)        { showStatus('error', 'Title is required.'); return; }
+    if (!author)       { showStatus('error', 'Author is required.'); return; }
+    if (!ratingEl)     { showStatus('error', 'Please select a rating.'); return; }
+    if (!dateFinished) { showStatus('error', 'Date Finished is required.'); return; }
+
+    const rating = parseInt(ratingEl.value, 10);
+
+    // Series parsing: prefer manual series# field over embedded #N in series name
+    let seriesName = null;
+    let seriesNum  = null;
+    if (seriesRaw) {
+      const parsed = parseSeries(seriesRaw);
+      seriesName = parsed.name;
+      seriesNum  = seriesNumRaw || parsed.num;
+    }
+
+    // Genres: split on comma, trim, lowercase, filter empty
+    const genres = genresRaw
+      ? genresRaw.split(',').map(g => g.trim().toLowerCase()).filter(Boolean)
+      : [];
+
+    const fields = { title, author, seriesName, seriesNum, rating, dateFinished, genres, notes };
+    const slug   = slugify(title);
+
+    statusEl.className = '';
+    statusEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Adding…';
+
+    try {
+      await submitBook(fields, slug, 1);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Add Book';
+    }
+  });
+</script>
+</body>
+</html>
