@@ -8,4 +8,7 @@ date_finished: 2025-12-01
 genres:
   - science-fiction
   - fantasy
+  - litrpg
 ---
+My first experience with a LitRPG book. It was a lot of fun and look forward to 
+more Carl and Donut.
