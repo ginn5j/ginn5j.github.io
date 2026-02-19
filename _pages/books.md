@@ -45,6 +45,16 @@ classes: wide
   font-size: 0.85em;
   font-style: italic;
 }
+@media (max-width: 600px) {
+  .books-table th:nth-child(6),
+  .books-table td:nth-child(6) { display: none; }
+
+  .books-table th:nth-child(1), .books-table td:nth-child(1) { width: 26%; }
+  .books-table th:nth-child(2), .books-table td:nth-child(2) { width: 20%; }
+  .books-table th:nth-child(3), .books-table td:nth-child(3) { width: 14%; }
+  .books-table th:nth-child(4), .books-table td:nth-child(4) { width: 18%; }
+  .books-table th:nth-child(5), .books-table td:nth-child(5) { width: 22%; }
+}
 </style>
 
 <table class="books-table">
