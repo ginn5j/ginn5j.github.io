@@ -184,6 +184,81 @@ sitemap: false
     #status.error   { display: block; background: #fee2e2; color: var(--danger); }
     #status.info    { display: block; background: #eff6ff; color: var(--accent); }
 
+    /* Crop modal */
+    .crop-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 200;
+      flex-direction: column;
+    }
+    .crop-modal.open { display: flex; }
+
+    .crop-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #111;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .crop-header .btn {
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+      padding: 6px 12px;
+    }
+
+    .crop-container {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    #crop-img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    #crop-box {
+      position: absolute;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+      cursor: move;
+      touch-action: none;
+    }
+
+    .crop-handle {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: #fff;
+      border-radius: 3px;
+      touch-action: none;
+    }
+    .crop-handle.tl { top: -11px; left: -11px; }
+    .crop-handle.tr { top: -11px; right: -11px; }
+    .crop-handle.bl { bottom: -11px; left: -11px; }
+    .crop-handle.br { bottom: -11px; right: -11px; }
+
+    .crop-footer {
+      padding: 12px 16px;
+      background: #111;
+      flex-shrink: 0;
+    }
+
     /* Preview */
     #preview-block {
       display: none;
@@ -233,6 +308,27 @@ sitemap: false
   </div>
 </div>
 
+<!-- Crop modal -->
+<div id="crop-modal" class="crop-modal">
+  <div class="crop-header">
+    <button id="crop-cancel" class="btn">Cancel</button>
+    <span>Crop Photo</span>
+    <button id="crop-reset" class="btn">Reset</button>
+  </div>
+  <div class="crop-container" id="crop-container">
+    <img id="crop-img" alt="" draggable="false">
+    <div id="crop-box">
+      <div class="crop-handle tl"></div>
+      <div class="crop-handle tr"></div>
+      <div class="crop-handle bl"></div>
+      <div class="crop-handle br"></div>
+    </div>
+  </div>
+  <div class="crop-footer">
+    <button id="crop-confirm" class="submit-btn">Use Photo</button>
+  </div>
+</div>
+
 <!-- Main form -->
 <div class="card">
   <form id="post-form" novalidate>
@@ -276,6 +372,11 @@ sitemap: false
 </div>
 
 <script>
+  // ── Crop state ─────────────────────────────────────────────────────────────
+
+  let cropRegion = null;      // { sx, sy, sw, sh } in natural image px; null = full image
+  let pendingPhotoFile = null; // File being cropped
+
   // ── Helpers ────────────────────────────────────────────────────────────────
 
   function slugify(title) {
@@ -336,11 +437,163 @@ sitemap: false
 
   document.getElementById('post-date').value = todayISO();
 
-  // ── Photo filename display ─────────────────────────────────────────────────
+  // ── Photo change → open crop modal ────────────────────────────────────────
 
   document.getElementById('photo').addEventListener('change', e => {
     const file = e.target.files[0];
-    document.getElementById('file-name').textContent = file ? file.name : '';
+    if (!file) { cropRegion = null; document.getElementById('file-name').textContent = ''; return; }
+    openCropModal(file);
+  });
+
+  // ── Crop modal ─────────────────────────────────────────────────────────────
+
+  function openCropModal(file) {
+    pendingPhotoFile = file;
+    const url = URL.createObjectURL(file);
+    const img = document.getElementById('crop-img');
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      initCropBox();
+    };
+    img.src = url;
+    document.getElementById('crop-modal').classList.add('open');
+  }
+
+  function initCropBox() {
+    const container = document.getElementById('crop-container');
+    const img       = document.getElementById('crop-img');
+    const box       = document.getElementById('crop-box');
+    const cRect = container.getBoundingClientRect();
+    const iRect = img.getBoundingClientRect();
+    box.style.left   = (iRect.left - cRect.left) + 'px';
+    box.style.top    = (iRect.top  - cRect.top)  + 'px';
+    box.style.width  = iRect.width  + 'px';
+    box.style.height = iRect.height + 'px';
+  }
+
+  function getImgRect() {
+    const c = document.getElementById('crop-container').getBoundingClientRect();
+    const i = document.getElementById('crop-img').getBoundingClientRect();
+    return { left: i.left - c.left, top: i.top - c.top, width: i.width, height: i.height };
+  }
+
+  // Drag handlers for crop box (move) and handles (resize)
+  (function () {
+    const cropBox = document.getElementById('crop-box');
+    const MIN_SIZE = 40;
+
+    // Move entire box
+    cropBox.addEventListener('pointerdown', e => {
+      if (e.target.classList.contains('crop-handle')) return;
+      e.preventDefault();
+      cropBox.setPointerCapture(e.pointerId);
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startLeft = parseFloat(cropBox.style.left);
+      const startTop  = parseFloat(cropBox.style.top);
+      const boxW = parseFloat(cropBox.style.width);
+      const boxH = parseFloat(cropBox.style.height);
+
+      function onMove(ev) {
+        const ir = getImgRect();
+        let newLeft = startLeft + (ev.clientX - startX);
+        let newTop  = startTop  + (ev.clientY - startY);
+        newLeft = Math.max(ir.left, Math.min(ir.left + ir.width  - boxW, newLeft));
+        newTop  = Math.max(ir.top,  Math.min(ir.top  + ir.height - boxH, newTop));
+        cropBox.style.left = newLeft + 'px';
+        cropBox.style.top  = newTop  + 'px';
+      }
+      function onUp() {
+        cropBox.removeEventListener('pointermove', onMove);
+        cropBox.removeEventListener('pointerup',   onUp);
+      }
+      cropBox.addEventListener('pointermove', onMove);
+      cropBox.addEventListener('pointerup',   onUp);
+    });
+
+    // Resize via corner handles
+    document.querySelectorAll('.crop-handle').forEach(handle => {
+      handle.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        handle.setPointerCapture(e.pointerId);
+        const corner = Array.from(handle.classList).find(c => ['tl','tr','bl','br'].includes(c));
+        const startLeft = parseFloat(cropBox.style.left);
+        const startTop  = parseFloat(cropBox.style.top);
+        const startW    = parseFloat(cropBox.style.width);
+        const startH    = parseFloat(cropBox.style.height);
+        // Anchor: opposite corner in container coords
+        const anchorX = corner === 'tl' || corner === 'bl' ? startLeft + startW : startLeft;
+        const anchorY = corner === 'tl' || corner === 'tr' ? startTop  + startH : startTop;
+
+        function onMove(ev) {
+          const ir = getImgRect();
+          // Pointer position relative to container
+          const cRect = document.getElementById('crop-container').getBoundingClientRect();
+          let px = ev.clientX - cRect.left;
+          let py = ev.clientY - cRect.top;
+          // Clamp pointer to image bounds
+          px = Math.max(ir.left, Math.min(ir.left + ir.width,  px));
+          py = Math.max(ir.top,  Math.min(ir.top  + ir.height, py));
+
+          let newLeft = Math.min(px, anchorX);
+          let newTop  = Math.min(py, anchorY);
+          let newW    = Math.abs(px - anchorX);
+          let newH    = Math.abs(py - anchorY);
+
+          // Enforce minimum size
+          if (newW < MIN_SIZE) {
+            newW = MIN_SIZE;
+            newLeft = corner === 'tl' || corner === 'bl' ? anchorX - MIN_SIZE : anchorX;
+          }
+          if (newH < MIN_SIZE) {
+            newH = MIN_SIZE;
+            newTop = corner === 'tl' || corner === 'tr' ? anchorY - MIN_SIZE : anchorY;
+          }
+
+          cropBox.style.left   = newLeft + 'px';
+          cropBox.style.top    = newTop  + 'px';
+          cropBox.style.width  = newW    + 'px';
+          cropBox.style.height = newH    + 'px';
+        }
+        function onUp() {
+          handle.removeEventListener('pointermove', onMove);
+          handle.removeEventListener('pointerup',   onUp);
+        }
+        handle.addEventListener('pointermove', onMove);
+        handle.addEventListener('pointerup',   onUp);
+      });
+    });
+  })();
+
+  document.getElementById('crop-reset').addEventListener('click', initCropBox);
+
+  document.getElementById('crop-cancel').addEventListener('click', () => {
+    document.getElementById('crop-modal').classList.remove('open');
+    document.getElementById('photo').value = '';
+    document.getElementById('file-name').textContent = '';
+    pendingPhotoFile = null;
+    cropRegion = null;
+  });
+
+  document.getElementById('crop-confirm').addEventListener('click', () => {
+    const img   = document.getElementById('crop-img');
+    const box   = document.getElementById('crop-box');
+    const iRect = getImgRect();
+    const scaleX = img.naturalWidth  / img.clientWidth;
+    const scaleY = img.naturalHeight / img.clientHeight;
+    const bLeft  = parseFloat(box.style.left)   - iRect.left;
+    const bTop   = parseFloat(box.style.top)    - iRect.top;
+    const bW     = parseFloat(box.style.width);
+    const bH     = parseFloat(box.style.height);
+    cropRegion = {
+      sx: Math.max(0, Math.round(bLeft * scaleX)),
+      sy: Math.max(0, Math.round(bTop  * scaleY)),
+      sw: Math.min(img.naturalWidth,  Math.round(bW * scaleX)),
+      sh: Math.min(img.naturalHeight, Math.round(bH * scaleY)),
+    };
+    document.getElementById('file-name').textContent = pendingPhotoFile.name;
+    document.getElementById('crop-modal').classList.remove('open');
   });
 
   // ── Image resize ───────────────────────────────────────────────────────────
@@ -355,14 +608,18 @@ sitemap: false
     });
   }
 
-  async function resizeImage(file) {
+  async function resizeImage(file, crop) {
     const img = await loadImage(file);
-    const scale = Math.min(1, 1600 / img.naturalWidth);
-    const w = Math.round(img.naturalWidth * scale);
-    const h = Math.round(img.naturalHeight * scale);
+    const sx = crop ? crop.sx : 0;
+    const sy = crop ? crop.sy : 0;
+    const sw = crop ? crop.sw : img.naturalWidth;
+    const sh = crop ? crop.sh : img.naturalHeight;
+    const scale = Math.min(1, 1600 / sw);
+    const w = Math.round(sw * scale);
+    const h = Math.round(sh * scale);
     const canvas = document.createElement('canvas');
     canvas.width = w; canvas.height = h;
-    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+    canvas.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
     return canvas.toDataURL('image/jpeg', 0.85);
   }
 
@@ -440,7 +697,7 @@ sitemap: false
     let photoFilename = null;
     if (photoFile) {
       showStatus('info', 'Uploading photo…');
-      const dataUrl = await resizeImage(photoFile);
+      const dataUrl = await resizeImage(photoFile, cropRegion);
       const base64 = dataUrl.replace(/^data:image\/jpeg;base64,/, '');
       const ext = photoFile.name.replace(/^.*\./, '').toLowerCase();
       photoFilename = photoFile.name.replace(/\.[^.]+$/, '.jpg');
@@ -473,6 +730,8 @@ sitemap: false
       }
       showStatus('success', successMsg);
       form.reset();
+      cropRegion = null;
+      pendingPhotoFile = null;
       document.getElementById('post-date').value = todayISO();
       document.getElementById('file-name').textContent = '';
     } else if (postRes.status === 422 && attempt === 1) {
