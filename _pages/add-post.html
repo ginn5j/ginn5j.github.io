@@ -650,23 +650,49 @@ sitemap: false
     return content + '\n';
   }
 
-  // ── GitHub API ─────────────────────────────────────────────────────────────
+  // ── GitHub API helpers ─────────────────────────────────────────────────────
 
-  async function githubPut(pat, path, commitMessage, base64Content) {
+  async function pathExists(pat, path) {
     const res = await fetch(
-      `https://api.github.com/repos/ginn5j/ginn5j.github.io/contents/${encodeURIComponent(path).replace(/%2F/g, '/')}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Authorization': `token ${pat}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28'
-        },
-        body: JSON.stringify({ message: commitMessage, content: base64Content, branch: 'main' })
-      }
+      `https://api.github.com/repos/ginn5j/ginn5j.github.io/contents/${path}`,
+      { headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github+json' } }
     );
-    return res;
+    return res.status === 200;
+  }
+
+  async function getHeadOid(pat) {
+    const res = await fetch(
+      'https://api.github.com/repos/ginn5j/ginn5j.github.io/git/refs/heads/main',
+      { headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github+json' } }
+    );
+    const data = await res.json();
+    return data.object.sha;
+  }
+
+  async function createCommit(pat, message, additions) {
+    const headOid = await getHeadOid(pat);
+    const mutation = `
+      mutation($input: CreateCommitOnBranchInput!) {
+        createCommitOnBranch(input: $input) {
+          commit { oid }
+        }
+      }`;
+    const variables = {
+      input: {
+        branch: { repositoryNameWithOwner: 'ginn5j/ginn5j.github.io', branchName: 'main' },
+        message: { headline: message },
+        fileChanges: { additions },
+        expectedHeadOid: headOid
+      }
+    };
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: { 'Authorization': `token ${pat}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: mutation, variables })
+    });
+    const json = await res.json();
+    if (json.errors) throw new Error(json.errors[0].message);
+    return json;
   }
 
   // ── Submit ─────────────────────────────────────────────────────────────────
@@ -692,26 +718,26 @@ sitemap: false
     const { dateStr, title, photoFile } = fields;
     const [yyyy, mm] = dateStr.split('-');
     const finalSlug = attempt === 2 ? slug + '-2' : slug;
+    const postPath = `_posts/${yyyy}/${mm}/${dateStr}-${finalSlug}.md`;
 
-    // ── Upload photo first (if provided) ──────────────────────────────────
-    let photoFilename = null;
-    if (photoFile) {
-      showStatus('info', 'Uploading photo…');
-      const dataUrl = await resizeImage(photoFile, cropRegion);
-      const base64 = dataUrl.replace(/^data:image\/jpeg;base64,/, '');
-      const ext = photoFile.name.replace(/^.*\./, '').toLowerCase();
-      photoFilename = photoFile.name.replace(/\.[^.]+$/, '.jpg');
-      const photoPath = `assets/${yyyy}/${mm}/${dateStr}-${finalSlug}/${photoFilename}`;
-      const photoRes = await githubPut(pat, photoPath, `Add post photo: ${title}`, base64);
-      if (photoRes.status !== 201 && photoRes.status !== 200) {
-        const data = await photoRes.json().catch(() => ({}));
-        showStatus('error', `Photo upload error ${photoRes.status}: ${data.message || 'Unknown error'}`);
-        return;
-      }
+    if (await pathExists(pat, postPath)) {
+      if (attempt === 1) { await submitPost(fields, slug, 2); return; }
+      showStatus('error', `File already exists: ${postPath}`);
+      return;
     }
 
-    // ── Upload post markdown ───────────────────────────────────────────────
-    showStatus('info', photoFile ? 'Uploading photo…\nSaving post…' : 'Saving post…');
+    // Build additions array (photo first, then post markdown)
+    const additions = [];
+    let photoFilename = null;
+
+    if (photoFile) {
+      showStatus('info', 'Processing photo…');
+      const dataUrl = await resizeImage(photoFile, cropRegion);
+      const base64 = dataUrl.replace(/^data:image\/jpeg;base64,/, '');
+      photoFilename = photoFile.name.replace(/\.[^.]+$/, '.jpg');
+      const photoPath = `assets/${yyyy}/${mm}/${dateStr}-${finalSlug}/${photoFilename}`;
+      additions.push({ path: photoPath, contents: base64 });
+    }
 
     const postFields = { ...fields, slug: finalSlug, photoFilename };
     const content = buildContent(postFields);
@@ -720,10 +746,12 @@ sitemap: false
     previewBlock.style.display = 'block';
     previewBlock.open = false;
 
-    const postPath = `_posts/${yyyy}/${mm}/${dateStr}-${finalSlug}.md`;
-    const postRes = await githubPut(pat, postPath, `Add post: ${title}`, toBase64Unicode(content));
+    additions.push({ path: postPath, contents: toBase64Unicode(content) });
 
-    if (postRes.status === 201) {
+    showStatus('info', photoFile ? 'Uploading photo and saving post…' : 'Saving post…');
+
+    try {
+      await createCommit(pat, `Add post: ${title}`, additions);
       let successMsg = `✓ Added!\nPost: ${postPath}`;
       if (photoFilename) {
         successMsg += `\nPhoto: assets/${yyyy}/${mm}/${dateStr}-${finalSlug}/${photoFilename}`;
@@ -734,12 +762,8 @@ sitemap: false
       pendingPhotoFile = null;
       document.getElementById('post-date').value = todayISO();
       document.getElementById('file-name').textContent = '';
-    } else if (postRes.status === 422 && attempt === 1) {
-      // File already exists — retry with -2 suffix
-      await submitPost(fields, slug, 2);
-    } else {
-      const data = await postRes.json().catch(() => ({}));
-      showStatus('error', `Error ${postRes.status}: ${data.message || 'Unknown error'}`);
+    } catch (err) {
+      showStatus('error', `Error: ${err.message}`);
     }
   }
 

@@ -348,6 +348,51 @@ sitemap: false
     return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
   }
 
+  // ── GitHub API helpers ─────────────────────────────────────────────────────
+
+  async function pathExists(pat, path) {
+    const res = await fetch(
+      `https://api.github.com/repos/ginn5j/ginn5j.github.io/contents/${path}`,
+      { headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github+json' } }
+    );
+    return res.status === 200;
+  }
+
+  async function getHeadOid(pat) {
+    const res = await fetch(
+      'https://api.github.com/repos/ginn5j/ginn5j.github.io/git/refs/heads/main',
+      { headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github+json' } }
+    );
+    const data = await res.json();
+    return data.object.sha;
+  }
+
+  async function createCommit(pat, message, additions) {
+    const headOid = await getHeadOid(pat);
+    const mutation = `
+      mutation($input: CreateCommitOnBranchInput!) {
+        createCommitOnBranch(input: $input) {
+          commit { oid }
+        }
+      }`;
+    const variables = {
+      input: {
+        branch: { repositoryNameWithOwner: 'ginn5j/ginn5j.github.io', branchName: 'main' },
+        message: { headline: message },
+        fileChanges: { additions },
+        expectedHeadOid: headOid
+      }
+    };
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: { 'Authorization': `token ${pat}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: mutation, variables })
+    });
+    const json = await res.json();
+    if (json.errors) throw new Error(json.errors[0].message);
+    return json;
+  }
+
   // ── PAT storage ────────────────────────────────────────────────────────────
 
   const patInput = document.getElementById('pat-input');
@@ -443,37 +488,20 @@ sitemap: false
     previewBlock.style.display = 'block';
     previewBlock.open = false;
 
-    const body = {
-      message: `Add book: ${fields.title}`,
-      content: toBase64Unicode(content),
-      branch: 'main'
-    };
+    if (await pathExists(pat, path)) {
+      if (attempt === 1) { await submitBook(fields, slug, 2); return; }
+      showStatus('error', `File already exists: ${path}`);
+      return;
+    }
 
-    const res = await fetch(
-      `https://api.github.com/repos/ginn5j/ginn5j.github.io/contents/${encodeURIComponent(path).replace(/%2F/g, '/')}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Authorization': `token ${pat}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28'
-        },
-        body: JSON.stringify(body)
-      }
-    );
-
-    if (res.status === 201) {
+    try {
+      await createCommit(pat, `Add book: ${fields.title}`, [{ path, contents: toBase64Unicode(content) }]);
       showStatus('success', `✓ Added! File: ${path}`);
       form.reset();
       document.getElementById('date-finished').value = todayISO();
       seriesNumRow.style.display = 'none';
-    } else if (res.status === 422 && attempt === 1) {
-      // File already exists — retry with -2 suffix
-      await submitBook(fields, slug, 2);
-    } else {
-      const data = await res.json().catch(() => ({}));
-      showStatus('error', `Error ${res.status}: ${data.message || 'Unknown error'}`);
+    } catch (err) {
+      showStatus('error', `Error: ${err.message}`);
     }
   }
 
