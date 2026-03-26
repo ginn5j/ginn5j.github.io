@@ -2,7 +2,7 @@
 type: post
 album_title: "Trans Europe Express"
 title: "Album Club: Trans Europe Express - Kraftwerk"
-date: 2026-03-26T03:27:16.810Z
+date: 2026-03-26T03:31:53.096Z
 excerpt_separator: <!--more-->
 artist: "Kraftwerk"
 release_year: 2009
@@ -48,6 +48,5 @@ Discussed on March 15, 2026. Picked by Jim.
 
 ## Chris's Notes
 
-Holds up very well to repeat listens. Hard to believe this is 1977. Want to listen to German version. 
-
-Sad to think the pan Europe ideal is probably lost in time now. 
+- Holds up very well to repeat listens. Hard to believe this is 1977. Want to listen to German version. 
+- Sad to think the pan Europe ideal is probably lost in time now. 
