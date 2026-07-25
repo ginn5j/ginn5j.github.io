@@ -10,13 +10,13 @@ REFRESH-INTERVAL;VALUE=DURATION:P1D
 X-PUBLISHED-TTL:P1D
 BEGIN:VEVENT
 UID:bitbrain-reacher-s4@ginn5j.com
-DTSTAMP:20260725T151711Z
+DTSTAMP:20260725T154820Z
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:📺 Start Reacher S4
-DESCRIPTION:Reacher season 4 — one episode a night. Premiered 2026-08-12\
- ; 8 episodes\, finale 2026-09-16. Starting tonight\, the finale lands the 
- night you watch it. On Prime Video.
+DESCRIPTION:Reacher season 4 — one episode a night.\n8 episodes.\nPremier
+ ed 2026-08-12.\nFinale 2026-09-16.\nStarting tonight\, the finale lands th
+ e night you watch it.\nOn Prime Video.
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -26,12 +26,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:bitbrain-neagley-s1@ginn5j.com
-DTSTAMP:20260725T151711Z
+DTSTAMP:20260725T154820Z
 DTSTART;VALUE=DATE:20260916
 DTEND;VALUE=DATE:20260917
 SUMMARY:📺 Start Neagley S1
-DESCRIPTION:Neagley season 1 — one episode a night. All 8 episodes drop 2
- 026-09-16. On Prime Video.
+DESCRIPTION:Neagley season 1 — one episode a night.\nAll 8 episodes drop 
+ 2026-09-16.\nOn Prime Video.
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -41,13 +41,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:bitbrain-ted-lasso-s4@ginn5j.com
-DTSTAMP:20260725T151711Z
+DTSTAMP:20260725T154820Z
 DTSTART;VALUE=DATE:20260928
 DTEND;VALUE=DATE:20260929
 SUMMARY:📺 Start Ted Lasso S4
-DESCRIPTION:Ted Lasso season 4 — one episode a night. Premiered 2026-08-0
- 5\; 10 episodes\, finale 2026-10-07. Starting tonight\, the finale lands t
- he night you watch it. On Apple TV+.
+DESCRIPTION:Ted Lasso season 4 — one episode a night.\n10 episodes.\nPrem
+ iered 2026-08-05.\nFinale 2026-10-07.\nStarting tonight\, the finale lands
+  the night you watch it.\nOn Apple TV+.
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -57,13 +57,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:bitbrain-slow-horses-s6@ginn5j.com
-DTSTAMP:20260725T151711Z
+DTSTAMP:20260725T154820Z
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261017
 SUMMARY:📺 Start Slow Horses S6
-DESCRIPTION:Slow Horses season 6 — one episode a night. Premiered 2026-09
- -16\; 6 episodes\, finale 2026-10-21. Starting tonight\, the finale lands 
- the night you watch it. On Apple TV+.
+DESCRIPTION:Slow Horses season 6 — one episode a night.\n6 episodes.\nPre
+ miered 2026-09-16.\nFinale 2026-10-21.\nStarting tonight\, the finale land
+ s the night you watch it.\nOn Apple TV+.
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 ACTION:DISPLAY
