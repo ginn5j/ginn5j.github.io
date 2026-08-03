@@ -218,6 +218,19 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
+  # The Sass all lives in the remote theme (minimal-mistakes), which is still
+  # written against @import, global built-in functions and the old color
+  # functions — all deprecated in Dart Sass. quiet_deps silences deprecation
+  # warnings raised by dependencies while leaving any raised by this site's own
+  # Sass audible, so the build log stays useful.
+  #
+  # Two @import warnings survive it, from the theme's own assets/css/main.scss,
+  # which is the entry point rather than a dependency. They are not silenced on
+  # purpose: @import is removed in Dart Sass 3.0, and those two lines are what
+  # will break the build when it lands. Overriding that file with @use is not a
+  # fix — the skin passes its variables to the framework through the global
+  # scope that @import provides, so @use drops the skin's colours entirely.
+  quiet_deps: true
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
