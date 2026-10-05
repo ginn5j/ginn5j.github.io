@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Personal Jekyll site for ginn5j.com, built on the remote theme `mmistakes/minimal-mistakes@4.28.0` (air skin). There is no local `_layouts`/`_includes`/`_sass`; all theme files come from the remote theme, so overriding one means copying it into the repo at the same path.
+Personal Jekyll site for ginn5j.com, built on the Minimal Mistakes theme (air skin) via the `minimal-mistakes-jekyll` gem. There is no local `_layouts`/`_includes`/`_sass`; all theme files come from the gem, so overriding one means copying it into the repo at the same path (`bundle info --path minimal-mistakes-jekyll` shows where it is installed).
+
+Gem versions, including Jekyll and the theme, are pinned by the committed `Gemfile.lock`. Dependabot (`.github/dependabot.yml`) opens weekly PRs to update them, with the theme in its own PR. Update deliberately with `bundle update <gem>` and commit the lock file.
 
 ## Commands
 

@@ -3,7 +3,6 @@ _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
-Gemfile.lock
 vendor
 
 # Obsidian (site vault): per-machine window state and local trash

@@ -7,11 +7,11 @@
 
 # Theme Settings
 #
-# Review documentation to determine if you should use `theme` or `remote_theme`
+# The theme is the minimal-mistakes-jekyll gem; its version is set in the
+# Gemfile/Gemfile.lock so Dependabot can track it.
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-# theme                  : "minimal-mistakes-jekyll"
-remote_theme             : "mmistakes/minimal-mistakes@4.28.0"
+theme                    : "minimal-mistakes-jekyll"
 minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
@@ -219,7 +219,7 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  # The Sass all lives in the remote theme (minimal-mistakes), which is still
+  # The Sass all lives in the theme gem (minimal-mistakes), which is still
   # written against @import, global built-in functions and the old color
   # functions — all deprecated in Dart Sass. quiet_deps silences deprecation
   # warnings raised by dependencies while leaving any raised by this site's own

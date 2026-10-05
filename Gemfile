@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.4"
+gem "minimal-mistakes-jekyll", "~> 4.28"
 
 group :jekyll_plugins do
   gem "jekyll-paginate"
@@ -8,7 +9,6 @@ group :jekyll_plugins do
   gem "jekyll-gist"
   gem "jekyll-feed", "~> 0.17"
   gem "jekyll-include-cache"
-  gem "jekyll-remote-theme"
 end
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
