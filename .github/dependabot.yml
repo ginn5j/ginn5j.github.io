@@ -10,3 +10,12 @@ updates:
           - "*"
         exclude-patterns:
           - "minimal-mistakes-jekyll"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns:
+          - "*"
