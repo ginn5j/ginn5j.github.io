@@ -1,0 +1,15 @@
+{
+  "useMarkdownLinks": true,
+  "newLinkFormat": "absolute",
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "assets/2026",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "_posts",
+  "userIgnoreFilters": [
+    "_site/",
+    ".jekyll-cache/",
+    "vendor/"
+  ],
+  "trashOption": "system",
+  "showUnsupportedFiles": false
+}

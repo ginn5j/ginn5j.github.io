@@ -5,3 +5,7 @@ _site
 .jekyll-metadata
 Gemfile.lock
 vendor
+
+# Obsidian (site vault): per-machine window state and local trash
+.obsidian/workspace*.json
+.trash/
