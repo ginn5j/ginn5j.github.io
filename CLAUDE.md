@@ -20,7 +20,7 @@ bundle exec jekyll build      # output to _site/ (gitignored)
 
 Any file not starting with `_` or `.` is published as-is. Add new repo-only files (docs, tooling config) to `exclude:` in `_config.yml`.
 
-Deployment: pushing to `main` triggers `.github/workflows/jekyll.yml`, which builds with Ruby 3.3 and `JEKYLL_ENV=production` and deploys to GitHub Pages.
+Deployment: pushing to `main` triggers `.github/workflows/jekyll.yml`, which builds with the Ruby pinned in `.ruby-version` and `JEKYLL_ENV=production` and deploys to GitHub Pages.
 
 ## Content model
 
