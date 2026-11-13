@@ -13,7 +13,7 @@ members: ["Jim", "Chris"]
 picked_by: "Jim"
 header:
   teaser: "https://coverartarchive.org/release/78f85aec-3efc-3d32-91a4-41b499e399c5/front-500"
-  header: "https://coverartarchive.org/release/78f85aec-3efc-3d32-91a4-41b499e399c5/front-500"
+  image: "https://coverartarchive.org/release/78f85aec-3efc-3d32-91a4-41b499e399c5/front-500"
 permalink: /blog/2026/07/11/king-crimson-in-the-court-of-the-crimson-king/
 ---
 

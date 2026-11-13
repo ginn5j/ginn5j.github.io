@@ -14,7 +14,7 @@ members: ["Jim", "Chris"]
 picked_by: "ginn5j"
 header:
   teaser: "https://coverartarchive.org/release/bf2849f0-3c31-4610-aef8-fa29fe4537ff/front-500"
-  header: "https://coverartarchive.org/release/bf2849f0-3c31-4610-aef8-fa29fe4537ff/front-500"
+  image: "https://coverartarchive.org/release/bf2849f0-3c31-4610-aef8-fa29fe4537ff/front-500"
 permalink: /blog/2026/05/29/bush-sixteen-stone/
 ---
 

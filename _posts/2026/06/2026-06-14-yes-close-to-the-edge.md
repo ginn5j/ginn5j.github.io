@@ -13,7 +13,7 @@ members: ["Jim", "Chris"]
 picked_by: "Chris"
 header:
   teaser: "https://coverartarchive.org/release/c5266fee-c1c1-4839-960f-d422ca5ad8a7/front-500"
-  header: "https://coverartarchive.org/release/c5266fee-c1c1-4839-960f-d422ca5ad8a7/front-500"
+  image: "https://coverartarchive.org/release/c5266fee-c1c1-4839-960f-d422ca5ad8a7/front-500"
 permalink: /blog/2026/06/14/yes-close-to-the-edge/
 ---
 

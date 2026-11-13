@@ -13,7 +13,7 @@ members: ["Jim", "Chris"]
 picked_by: "Jim"
 header:
   teaser: "https://coverartarchive.org/release/3b55bf62-83b6-41bc-90d9-6421cdd0c67e/front-500"
-  header: "https://coverartarchive.org/release/3b55bf62-83b6-41bc-90d9-6421cdd0c67e/front-500"
+  image: "https://coverartarchive.org/release/3b55bf62-83b6-41bc-90d9-6421cdd0c67e/front-500"
 permalink: /blog/2026/08/10/prince-purple-rain/
 ---
 

@@ -13,7 +13,7 @@ members: ["Jim", "Chris"]
 picked_by: "Chris"
 header:
   teaser: "https://coverartarchive.org/release/32b27803-1066-42bb-a97c-daf86ca0fd55/front-500"
-  header: "https://coverartarchive.org/release/32b27803-1066-42bb-a97c-daf86ca0fd55/front-500"
+  image: "https://coverartarchive.org/release/32b27803-1066-42bb-a97c-daf86ca0fd55/front-500"
 permalink: /blog/2026/11/13/johnny-blue-skies-mutiny-after-midnight-extended-edition/
 ---
 

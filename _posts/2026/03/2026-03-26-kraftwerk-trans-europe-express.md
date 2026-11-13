@@ -13,7 +13,7 @@ members: ["Jim", "Chris"]
 picked_by: "Jim"
 header:
   teaser: "https://coverartarchive.org/release/8836dd99-a948-476e-a7a6-9f34fd40b017/front-500"
-  header: "https://coverartarchive.org/release/8836dd99-a948-476e-a7a6-9f34fd40b017/front-500"
+  image: "https://coverartarchive.org/release/8836dd99-a948-476e-a7a6-9f34fd40b017/front-500"
 permalink: /blog/2026/03/26/kraftwerk-trans-europe-express/
 ---
 

@@ -13,7 +13,7 @@ members: ["Jim", "Chris"]
 picked_by: "Chris"
 header:
   teaser: "https://coverartarchive.org/release/587a4f2d-73a5-3b4e-b68b-95787bf91c9d/front-500"
-  header: "https://coverartarchive.org/release/587a4f2d-73a5-3b4e-b68b-95787bf91c9d/front-500"
+  image: "https://coverartarchive.org/release/587a4f2d-73a5-3b4e-b68b-95787bf91c9d/front-500"
 permalink: /blog/2026/07/24/john-mayer-continuum/
 ---
 
