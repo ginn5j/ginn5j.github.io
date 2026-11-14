@@ -8,12 +8,12 @@ artist: "Kraftwerk"
 release_year: 2009
 discussed_date: 2026-03-15
 mbid: "8836dd99-a948-476e-a7a6-9f34fd40b017"
-cover_art: "https://coverartarchive.org/release/8836dd99-a948-476e-a7a6-9f34fd40b017/front-500"
+cover_art: "/assets/2026/album-club/2026-03-26-kraftwerk-trans-europe-express.jpg"
 members: ["Jim", "Chris"]
 picked_by: "Jim"
 header:
-  teaser: "https://coverartarchive.org/release/8836dd99-a948-476e-a7a6-9f34fd40b017/front-500"
-  image: "https://coverartarchive.org/release/8836dd99-a948-476e-a7a6-9f34fd40b017/front-500"
+  teaser: "/assets/2026/album-club/2026-03-26-kraftwerk-trans-europe-express.jpg"
+  image: "/assets/2026/album-club/2026-03-26-kraftwerk-trans-europe-express.jpg"
 permalink: /blog/2026/03/26/kraftwerk-trans-europe-express/
 ---
 

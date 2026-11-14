@@ -8,12 +8,12 @@ artist: "King Crimson"
 release_year: 1969
 discussed_date: 2026-07-11
 mbid: "78f85aec-3efc-3d32-91a4-41b499e399c5"
-cover_art: "https://coverartarchive.org/release/78f85aec-3efc-3d32-91a4-41b499e399c5/front-500"
+cover_art: "/assets/2026/album-club/2026-07-11-king-crimson-in-the-court-of-the-crimson-king.jpg"
 members: ["Jim", "Chris"]
 picked_by: "Jim"
 header:
-  teaser: "https://coverartarchive.org/release/78f85aec-3efc-3d32-91a4-41b499e399c5/front-500"
-  image: "https://coverartarchive.org/release/78f85aec-3efc-3d32-91a4-41b499e399c5/front-500"
+  teaser: "/assets/2026/album-club/2026-07-11-king-crimson-in-the-court-of-the-crimson-king.jpg"
+  image: "/assets/2026/album-club/2026-07-11-king-crimson-in-the-court-of-the-crimson-king.jpg"
 permalink: /blog/2026/07/11/king-crimson-in-the-court-of-the-crimson-king/
 ---
 

@@ -8,12 +8,12 @@ artist: "Yes"
 release_year: 1972
 discussed_date: 2026-06-14
 mbid: "c5266fee-c1c1-4839-960f-d422ca5ad8a7"
-cover_art: "https://coverartarchive.org/release/c5266fee-c1c1-4839-960f-d422ca5ad8a7/front-500"
+cover_art: "/assets/2026/album-club/2026-06-14-yes-close-to-the-edge.jpg"
 members: ["Jim", "Chris"]
 picked_by: "Chris"
 header:
-  teaser: "https://coverartarchive.org/release/c5266fee-c1c1-4839-960f-d422ca5ad8a7/front-500"
-  image: "https://coverartarchive.org/release/c5266fee-c1c1-4839-960f-d422ca5ad8a7/front-500"
+  teaser: "/assets/2026/album-club/2026-06-14-yes-close-to-the-edge.jpg"
+  image: "/assets/2026/album-club/2026-06-14-yes-close-to-the-edge.jpg"
 permalink: /blog/2026/06/14/yes-close-to-the-edge/
 ---
 

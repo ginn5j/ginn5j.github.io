@@ -8,12 +8,12 @@ artist: "Prince"
 release_year: 1984
 discussed_date: 2026-08-10
 mbid: "3b55bf62-83b6-41bc-90d9-6421cdd0c67e"
-cover_art: "https://coverartarchive.org/release/3b55bf62-83b6-41bc-90d9-6421cdd0c67e/front-500"
+cover_art: "/assets/2026/album-club/2026-08-10-prince-purple-rain.jpg"
 members: ["Jim", "Chris"]
 picked_by: "Jim"
 header:
-  teaser: "https://coverartarchive.org/release/3b55bf62-83b6-41bc-90d9-6421cdd0c67e/front-500"
-  image: "https://coverartarchive.org/release/3b55bf62-83b6-41bc-90d9-6421cdd0c67e/front-500"
+  teaser: "/assets/2026/album-club/2026-08-10-prince-purple-rain.jpg"
+  image: "/assets/2026/album-club/2026-08-10-prince-purple-rain.jpg"
 permalink: /blog/2026/08/10/prince-purple-rain/
 ---
 

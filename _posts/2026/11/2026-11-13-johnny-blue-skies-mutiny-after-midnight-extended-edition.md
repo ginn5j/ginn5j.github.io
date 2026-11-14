@@ -8,12 +8,12 @@ artist: "Johnny Blue Skies"
 release_year: 2026
 discussed_date: 2026-11-11
 mbid: "32b27803-1066-42bb-a97c-daf86ca0fd55"
-cover_art: "https://coverartarchive.org/release/32b27803-1066-42bb-a97c-daf86ca0fd55/front-500"
+cover_art: "/assets/2026/album-club/2026-11-13-johnny-blue-skies-mutiny-after-midnight-extended-edition.jpg"
 members: ["Jim", "Chris"]
 picked_by: "Chris"
 header:
-  teaser: "https://coverartarchive.org/release/32b27803-1066-42bb-a97c-daf86ca0fd55/front-500"
-  image: "https://coverartarchive.org/release/32b27803-1066-42bb-a97c-daf86ca0fd55/front-500"
+  teaser: "/assets/2026/album-club/2026-11-13-johnny-blue-skies-mutiny-after-midnight-extended-edition.jpg"
+  image: "/assets/2026/album-club/2026-11-13-johnny-blue-skies-mutiny-after-midnight-extended-edition.jpg"
 permalink: /blog/2026/11/13/johnny-blue-skies-mutiny-after-midnight-extended-edition/
 ---
 

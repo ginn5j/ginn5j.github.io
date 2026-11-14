@@ -8,12 +8,12 @@ artist: "John Mayer"
 release_year: 2006
 discussed_date: 2026-07-24
 mbid: "587a4f2d-73a5-3b4e-b68b-95787bf91c9d"
-cover_art: "https://coverartarchive.org/release/587a4f2d-73a5-3b4e-b68b-95787bf91c9d/front-500"
+cover_art: "/assets/2026/album-club/2026-07-24-john-mayer-continuum.jpg"
 members: ["Jim", "Chris"]
 picked_by: "Chris"
 header:
-  teaser: "https://coverartarchive.org/release/587a4f2d-73a5-3b4e-b68b-95787bf91c9d/front-500"
-  image: "https://coverartarchive.org/release/587a4f2d-73a5-3b4e-b68b-95787bf91c9d/front-500"
+  teaser: "/assets/2026/album-club/2026-07-24-john-mayer-continuum.jpg"
+  image: "/assets/2026/album-club/2026-07-24-john-mayer-continuum.jpg"
 permalink: /blog/2026/07/24/john-mayer-continuum/
 ---
 

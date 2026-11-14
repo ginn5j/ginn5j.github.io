@@ -9,12 +9,12 @@ release_year: 1994
 genre: 
 discussed_date: 2026-05-29
 mbid: "bf2849f0-3c31-4610-aef8-fa29fe4537ff"
-cover_art: "https://coverartarchive.org/release/bf2849f0-3c31-4610-aef8-fa29fe4537ff/front-500"
+cover_art: "/assets/2026/album-club/2026-05-29-bush-sixteen-stone.jpg"
 members: ["Jim", "Chris"]
 picked_by: "ginn5j"
 header:
-  teaser: "https://coverartarchive.org/release/bf2849f0-3c31-4610-aef8-fa29fe4537ff/front-500"
-  image: "https://coverartarchive.org/release/bf2849f0-3c31-4610-aef8-fa29fe4537ff/front-500"
+  teaser: "/assets/2026/album-club/2026-05-29-bush-sixteen-stone.jpg"
+  image: "/assets/2026/album-club/2026-05-29-bush-sixteen-stone.jpg"
 permalink: /blog/2026/05/29/bush-sixteen-stone/
 ---
 
