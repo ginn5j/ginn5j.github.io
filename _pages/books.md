@@ -121,7 +121,7 @@ classes: wide
   <select id="filter-genre">
     <option value="">All genres</option>
     {% for genre in all_genres %}
-    <option value="{{ genre }}">{{ genre | replace: "-", " " | capitalize }}</option>
+    <option value="{{ genre | escape }}">{{ genre | replace: "-", " " | capitalize | escape }}</option>
     {% endfor %}
   </select>
   <button id="filter-clear" class="books-filter-clear">Clear</button>
@@ -147,16 +147,19 @@ classes: wide
     {% assign label_index = book.rating | minus: 1 %}
     {% assign label = rating_labels[label_index] %}
     {% assign stars = star_strings[label_index] %}
-    <tr data-author="{{ book.author | downcase }}"
-        data-series="{{ book.series | downcase }}"
-        data-rating="{{ book.rating }}"
-        data-genres="{{ book.genres | join: '|' | downcase }}">
-      <td>{% assign has_notes = book.content | strip | size %}{% if has_notes > 0 %}<a href="{{ book.url }}">{{ book.title }}</a>{% else %}{{ book.title }}{% endif %}</td>
-      <td>{{ book.author }}</td>
-      <td>{% if book.series %}{{ book.series }}{% if book.series_number %} #{{ book.series_number }}{% endif %}{% endif %}</td>
+    {% comment %}Book front matter is written by scripts and the add-book form, so
+    every value is escaped: a title or genre must never be able to open a tag
+    or break out of an attribute.{% endcomment %}
+    <tr data-author="{{ book.author | downcase | escape }}"
+        data-series="{{ book.series | downcase | escape }}"
+        data-rating="{{ book.rating | escape }}"
+        data-genres="{{ book.genres | join: '|' | downcase | escape }}">
+      <td>{% assign has_notes = book.content | strip | size %}{% if has_notes > 0 %}<a href="{{ book.url }}">{{ book.title | escape }}</a>{% else %}{{ book.title | escape }}{% endif %}</td>
+      <td>{{ book.author | escape }}</td>
+      <td>{% if book.series %}{{ book.series | escape }}{% if book.series_number %} #{{ book.series_number | escape }}{% endif %}{% endif %}</td>
       <td><span title="{{ label }}">{{ stars }}</span></td>
       <td>{{ book.date_finished | date: "%b %-d, %Y" }}</td>
-      <td>{{ book.genres | join: ", " }}</td>
+      <td>{{ book.genres | join: ", " | escape }}</td>
     </tr>
     {% endfor %}
     <tr id="books-no-results" style="display:none">
